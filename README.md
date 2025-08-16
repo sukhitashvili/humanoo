@@ -18,7 +18,7 @@ Python 3.12+
 
 ## 📌 Endpoints
 
-`POST /query` - Processes an application object and returns extracted features.
+`POST /query` - Processes input object and returns recommended topic name.
 ### Request Body:
 ```JSON
 {
