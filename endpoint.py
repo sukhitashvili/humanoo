@@ -1,8 +1,9 @@
 import logging
-import os
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 
 from model import Model, Input
 
@@ -18,29 +19,27 @@ def read_root():
     return 'API is working use "/docs" route to use different implemented routes'
 
 
-@app.post(
-    "/query",
-    summary="Preferred product",
-    description="Returns preferred product",
-)
-async def query(
-        request: Input,
-):
+class Response(BaseModel):
+    topic_name: str
+
+
+@app.post("/query",summary="Preferred product", description="Returns preferred product", response_model=Response)
+async def query(request: Input):
     try:
         prediction = model.predict(input_data=request)
-        response = dict()
-        response['status'] = 'success'
-        response['message'] = prediction
-        return response
+        return JSONResponse(
+            status_code=200,
+            content={
+                "topic_name": prediction,
+            }
+        )
 
-    except Exception as exception:
-        response = dict()
-        response['error'] = f"An error occurred: {exception}"
-        response['status'] = 'failed'
-    return response
+    except HTTPException as e:
+        return JSONResponse(status_code=e.status_code, content={"message": f"HTTPException error: {e.detail}"})
+
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"message": f"Exception error: {str(e)}"})
 
 
 if __name__ == "__main__":
-    host = os.getenv("HOST", "0.0.0.0")  # Default to localhost if not set
-    port = int(os.getenv("PORT", 8000))  # Default port 8000 if not set
-    uvicorn.run(app, host=host, port=port)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
