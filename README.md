@@ -1,5 +1,3 @@
-# Humanoo
-
 ## Introduction
 
 My solution for the case study in explained in - [case_study.pdf](./case_study.pdf) file, 
