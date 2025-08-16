@@ -10,7 +10,7 @@ from model import Model, Input
 logger = logging.getLogger(__name__)
 
 model = Model()
-app = FastAPI(title="Blueprint Generator", version="0.1.0")
+app = FastAPI(title="Recommender", version="0.1.0")
 
 
 @app.get("/")
