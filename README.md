@@ -10,6 +10,7 @@ Python 3.12+
 
 - [endpoint.py](./endpoint.py) - FastAPI app.
 - [model.py](./model.py) - The clustering model code file.
+- [Dockerfile](./model.py) - The docker file.
 - [data_clustering.ipynb](./data_clustering.ipynb) - Contains code used to create clustering model.
 - [data.csv](./data.csv) - The toy data.
 - [kmeans.pkl](./kmeans.pkl) - stored clustering model file.
