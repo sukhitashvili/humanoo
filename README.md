@@ -1,6 +1,6 @@
 ## Introduction
 
-My solution for the case study in explained in - [case_study.pdf](./case_study.pdf) file, 
+My solution for the case study is explained in - [case_study.pdf](./case_study.pdf) file, 
 which I recommend to read first before going over the code.
 
 ## 📦 Requirements
