@@ -25,7 +25,7 @@ class Model:
             kmeans = pkl.load(f)
         self.scaler = scaler
         self.kmeans = kmeans
-        self.index_to_product = {2: 'body workout', 0: 'productivity', 1: 'body workout'}
+        self.index_to_product = {1: 'Recipes', 2: 'body workout', 0: 'productivity'}
 
     def predict(self, input_data: Input):
         array = np.array([input_data.age, input_data.workouts_per_week]).reshape((1, -1))
